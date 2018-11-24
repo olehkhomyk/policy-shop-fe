@@ -1,0 +1,18 @@
+<div class="order-container">
+    <div class="order-list">
+        <app-order-item
+            class="order-item"
+            *ngFor="let candidate of candidates"
+            [count]  = "candidate.count"
+            (add)    = "addCount(candidate)"
+            (remove) = "removeCount(candidate)"></app-order-item>
+    </div>
+
+    <div class="do-order">
+        <button mat-raised-button
+                color="primary"
+                (click)="openDialog()">
+            Замовити
+        </button>
+    </div>
+</div>

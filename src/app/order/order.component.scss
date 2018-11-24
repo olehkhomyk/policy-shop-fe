@@ -1,0 +1,26 @@
+.order-container {
+  padding: 20px;
+
+  .order-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .order-item {
+      margin: 10px;
+    }
+  }
+
+  .do-order {
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+    box-sizing: border-box;
+    justify-content: center;
+
+    button {
+      width: 80%;
+      padding: 5px;
+    }
+  }
+}

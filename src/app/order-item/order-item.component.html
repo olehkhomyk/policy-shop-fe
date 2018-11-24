@@ -1,0 +1,19 @@
+<div class="order-item-container">
+  <div class="image-box"
+       [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}"></div>
+  <div class="actions-container">
+    <button class="action-item"
+            mat-mini-fab
+            color="primary"
+            (click)="remove.emit()">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
+    </button>
+    <span class="action-item order-count">{{count}}</span>
+    <button class="action-item"
+            mat-mini-fab
+            color="primary"
+            (click)="add.emit()">
+      <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+    </button>
+  </div>
+</div>

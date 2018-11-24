@@ -1,0 +1,45 @@
+<div class="authorization container" *ngIf="!isAdmin">
+    <div class="error" *ngIf="isWrongCredential">Wrong username or password</div>
+    <form class="example-form" [formGroup]="credentialForm" (ngSubmit)="login(credentialForm)">
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="User Name"  formControlName="username" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Password"  formControlName="password" required>
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit" [disabled]="!credentialForm.dirty">Save
+        </button>
+    </form>
+</div>
+
+<div class="container" *ngIf="isAdmin">
+    <button class="log-out-btn" mat-button color="warn" (click)="logOut()">Log Out</button>
+
+    <form class="example-form" [formGroup]="ratingForm" (ngSubmit)="saveChanges(ratingForm)">
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Порошенко"  formControlName="poroshenko" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Зеленський"  formControlName="zelenskyi" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Тимошенко"  formControlName="tymoshenko" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Садовий"  formControlName="sadovyi" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Ляшко"  formControlName="lyashko" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Загальна кілкість"  formControlName="sum" required>
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit" [disabled]="!ratingForm.dirty">Save
+        </button>
+    </form>
+</div>

@@ -1,0 +1,53 @@
+.container {
+  padding: 30px 15px;
+
+  .rating-size {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .rating-size-item {
+      height: 19px;
+      border-left: 1px solid lightgray;
+      border-right: 1px solid lightgray;
+      box-sizing: border-box;
+      position: relative;
+
+      .size-item-title {
+        position: absolute;
+        left: 0;
+        top: -25px;
+        font-size: 16px;
+        font-weight: bold;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  .rating-item {
+    margin: 10px 0;
+    position: relative;
+    height: 20px;
+    background-color: lightgray;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .rating-indicator {
+    height: 20px;
+    background-color: indianred;
+    position: relative;
+    width: 50%;
+
+    .rating-image {
+      position: absolute;
+      background-color: #bf3a3a;
+      border-radius: 50%;
+      right: -5px;
+      top: -10px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+}

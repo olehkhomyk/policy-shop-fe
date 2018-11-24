@@ -1,0 +1,20 @@
+.container {
+  .full-price-container {
+    padding: 10px 0 30px;
+    font-size: 20px;
+    text-align: left;
+
+    .price-desc {
+      color: gray;
+    }
+
+    .full-price-desc {
+      text-decoration: line-through;
+    }
+  }
+
+  .order-form {
+    display: flex;
+    flex-direction: column;
+  }
+}

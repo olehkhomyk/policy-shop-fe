@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="rating-size">
+    <div class="rating-size-item" *ngFor="let item of ratingSize">
+      <span class="size-item-title">{{item}}%</span>
+    </div>
+  </div>
+
+  <h3>Порошенко</h3>
+  <div class="rating-item">
+    <div class="rating-indicator" [ngStyle]="{'width': candidates.poroshenko} ">
+      <div class="rating-image"></div>
+    </div>
+  </div>
+
+  <h3>Зеленський</h3>
+  <div class="rating-item">
+    <div class="rating-indicator" [ngStyle]="{'width': candidates.zelenskyi} ">
+      <div class="rating-image"></div>
+    </div>
+  </div>
+
+  <h3>Тимошенко</h3>
+  <div class="rating-item">
+    <div class="rating-indicator" [ngStyle]="{'width': candidates.tymoshenko} ">
+      <div class="rating-image"></div>
+    </div>
+  </div>
+
+  <h3>Садовий</h3>
+  <div class="rating-item">
+    <div class="rating-indicator" [ngStyle]="{'width': candidates.sadovyi} ">
+      <div class="rating-image"></div>
+    </div>
+  </div>
+
+  <h3>Ляшко</h3>
+  <div class="rating-item">
+    <div class="rating-indicator" [ngStyle]="{'width': candidates.lyashko} ">
+      <div class="rating-image"></div>
+    </div>
+  </div>
+</div>
