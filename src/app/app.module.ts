@@ -16,6 +16,7 @@ import { RatingComponent } from './rating/rating.component';
 import { DoOrderComponent } from './do-order/do-order.component';
 import { HttpService } from './service/http.service';
 import { OrderItemComponent } from './order-item/order-item.component';
+import { SuccessComponent } from './success/success.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { OrderItemComponent } from './order-item/order-item.component';
     ChangeRatingComponent,
     RatingComponent,
     DoOrderComponent,
-    OrderItemComponent
+    OrderItemComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

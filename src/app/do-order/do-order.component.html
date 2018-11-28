@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <form class="order-form" [formGroup]="orderForm" (ngSubmit)="savaOrder(orderForm)">
+  <form class="order-form" [formGroup]="orderForm" (ngSubmit)="saveOrder(orderForm)">
 
     <table class="example-full-width" cellspacing="0">
       <tr>
@@ -33,7 +33,8 @@
     </table>
 
     <mat-form-field class="example-full-width">
-      <input matInput type="number" placeholder="Номер Телефону"  formControlName="phone" required>
+      <span matPrefix>+380 &nbsp;</span>
+      <input type="tel" matInput placeholder="Номер Телефону" formControlName="phone" required>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
@@ -68,7 +69,10 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <button mat-flat-button color="primary" type="submit" [disabled]="!orderForm.dirty">Save
+    <button mat-flat-button
+            [color]="businessColor"
+            type="submit"
+            [disabled]="!orderForm.dirty">Save
     </button>
   </form>
 </div>

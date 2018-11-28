@@ -1,0 +1,12 @@
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+
+  .success-message {
+    text-align: center;
+    color: dodgerblue;
+    font-family: sans-serif;
+  }
+}

@@ -5,39 +5,39 @@ import { Observable } from 'rxjs';
 import { flatMap, map, debounceTime, startWith, tap } from 'rxjs/operators';
 import { City, HttpService } from '../service/http.service';
 import { COUNT_TO_DISCOUNT, PRICE, PRICE_VS_DISCOUNT, SEARCH_DROPDOWN_DELAY } from '../other/constant';
-import { Candidate, Candidates } from '../other/models';
+import { Candidate } from '../other/models';
+import { BusinessStyle } from '../other/BusinessStyle';
 
 @Component({
   selector: 'app-do-order',
   templateUrl: './do-order.component.html',
   styleUrls: ['./do-order.component.scss']
 })
-export class DoOrderComponent implements OnInit {
+export class DoOrderComponent extends BusinessStyle implements OnInit {
 
   public orderForm: FormGroup;
   public cityOptions$: Observable<any[]>;
   public addressOptions$: Observable<any[]>;
 
-  private candidates: Candidates;
-
   constructor(public dialogRef: MatDialogRef<DoOrderComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private fb: FormBuilder,
               private service: HttpService) {
+    super();
   }
 
   public get fullPrice(): number {
-    const count = DoOrderComponent.reduceOrder(this.data.candidates);
+    const count = DoOrderComponent.reduceOrder(this.candidates);
 
     return (count * PRICE);
   }
 
   public get isDiscount(): boolean {
-    return DoOrderComponent.reduceOrder(this.data.candidates)  > COUNT_TO_DISCOUNT;
+    return DoOrderComponent.reduceOrder(this.candidates)  > COUNT_TO_DISCOUNT;
   }
 
   public get discountPrice(): number {
-    const count = DoOrderComponent.reduceOrder(this.data.candidates);
+    const count = DoOrderComponent.reduceOrder(this.candidates);
 
     return count * PRICE_VS_DISCOUNT;
   }
@@ -50,15 +50,17 @@ export class DoOrderComponent implements OnInit {
     this.orderForm = this.fb.group({
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.minLength(10)]],
+      phone: ['', [Validators.required]],
       city: ['', [Validators.required]],
       address: ['', [Validators.required]],
     });
   }
 
-  ngOnInit() {
-    console.log(this.data);
+  private get candidates(): Array<Candidate> {
+    return this.data.candidates || [];
+  }
 
+  ngOnInit() {
     this.initForm();
 
     this.cityOptions$ = this.orderForm.get('city').valueChanges
@@ -91,7 +93,7 @@ export class DoOrderComponent implements OnInit {
     return city ? city.name : undefined;
   }
 
-  public savaOrder(form): void {
+  public saveOrder(form): void {
     const data = form.value;
     if (form.invalid) {
       return;
@@ -102,25 +104,29 @@ export class DoOrderComponent implements OnInit {
       data.surname,
       data.address.Description,
       data.phone,
-      data.city,
+      data.city.Description,
       this.candidates);
+
+    this.service.saveOrder(reqData)
+      .subscribe((response) => {
+        this.dialogRef.close(true);
+      });
   }
 
   public onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
 
-class Order {
+export class Order {
   name: string;
   surname: string;
   address: string;
   city: string;
   phone: number;
-  candidates: Candidates;
+  candidates: Array<Candidate>;
 
-  constructor(name, surname, address, phone, city, candidates) {
+  constructor(name: string, surname: string, address: string, phone: number, city: string, candidates: Array<Candidate>) {
     this.name = name;
     this.surname = surname;
     this.address = address;

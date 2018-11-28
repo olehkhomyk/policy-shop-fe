@@ -2,18 +2,22 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DoOrderComponent } from '../do-order/do-order.component';
 import { Candidate } from '../other/models';
-import { candidatesList } from '../other/constant';
+import { candidatesList, resetCandidatesCount } from '../other/constant';
+import { BusinessStyle } from '../other/BusinessStyle';
+import { Router } from '@angular/router';
+import { successState } from '../success/success.state';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent {
+export class OrderComponent extends BusinessStyle {
 
-  public candidates: Array<Candidate> = [...candidatesList];
+  public candidates: Array<Candidate> = resetCandidatesCount(candidatesList);
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private router: Router) {
+    super();
   }
 
   public addCount(candidate: Candidate): void {
@@ -26,6 +30,11 @@ export class OrderComponent {
     }
   }
 
+  public get isDialogAvailable(): boolean {
+    return this.candidates
+      .reduce((acc: number, item: Candidate) => acc += item.count, 0) > 0;
+  }
+
   openDialog(): void {
     console.log(this.candidates);
     const dialogRef = this.dialog.open(DoOrderComponent, {
@@ -35,8 +44,10 @@ export class OrderComponent {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // alert('Успішне Замовлення');
+    dialogRef.afterClosed().subscribe((checker) => {
+      if (checker) {
+        this.router.navigate([successState.path]);
+      }
     });
   }
 }

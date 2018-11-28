@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { API_URL } from '../other/constant';
 import { map, tap } from 'rxjs/operators';
 import { Rating } from '../other/models';
+import { Order } from '../do-order/do-order.component';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,10 @@ export class HttpService {
       .pipe(
         map((data: Array<any>) => data.map((item) => new Address(item)))
       );
+  }
+
+  public saveOrder(data: Order): Observable<any> {
+    return this.http.post(`${this.url}/order`, data);
   }
 }
 

@@ -10,7 +10,8 @@
 
     <div class="do-order">
         <button mat-raised-button
-                color="primary"
+                [color]="businessColor"
+                [disabled]="!isDialogAvailable"
                 (click)="openDialog()">
             Замовити
         </button>
