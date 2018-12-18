@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatAutocompleteModule,
     MatIconModule
-  ]
+  ],
+  declarations: []
 })
 export class SharedModule { }

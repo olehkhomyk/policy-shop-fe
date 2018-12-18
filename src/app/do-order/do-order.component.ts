@@ -7,6 +7,8 @@ import { City, HttpService } from '../service/http.service';
 import { COUNT_TO_DISCOUNT, PRICE, PRICE_VS_DISCOUNT, SEARCH_DROPDOWN_DELAY } from '../other/constant';
 import { Candidate } from '../other/models';
 import { BusinessStyle } from '../other/BusinessStyle';
+import { Router } from '@angular/router';
+import { successState } from '../success/success.state';
 
 @Component({
   selector: 'app-do-order',
@@ -19,10 +21,11 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
   public cityOptions$: Observable<any[]>;
   public addressOptions$: Observable<any[]>;
 
-  constructor(public dialogRef: MatDialogRef<DoOrderComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private fb: FormBuilder,
-              private service: HttpService) {
+  constructor(protected fb: FormBuilder,
+              protected service: HttpService,
+              protected router: Router,
+              public dialogRef?: MatDialogRef<DoOrderComponent>,
+              @Inject(MAT_DIALOG_DATA) public data?: any) {
     super();
   }
 
@@ -42,11 +45,11 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
     return count * PRICE_VS_DISCOUNT;
   }
 
-  private static reduceOrder(candidates: Array<Candidate>): number {
+  protected static reduceOrder(candidates: Array<Candidate>): number {
     return candidates.reduce((acc, item: Candidate) => acc += item.count, 0);
   }
 
-  private initForm(): void {
+  protected initForm(): void {
     this.orderForm = this.fb.group({
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
@@ -56,8 +59,8 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
     });
   }
 
-  private get candidates(): Array<Candidate> {
-    return this.data.candidates || [];
+  protected get candidates(): Array<Candidate> {
+    return  this.data && this.data.candidates || this.service.candidatesValue || [];
   }
 
   ngOnInit() {
@@ -109,7 +112,11 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
 
     this.service.saveOrder(reqData)
       .subscribe((response) => {
-        this.dialogRef.close(true);
+        if (this.dialogRef) {
+          this.dialogRef.close(true);
+        } else {
+          this.router.navigate([successState.path]);
+        }
       });
   }
 

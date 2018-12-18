@@ -1,8 +1,22 @@
 @mixin heading-font {
-  font-family: 'Catamaran';
-  font-weight: 800 !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700 !important;
 }
 
 @mixin body-font {
+  font-family: 'Roboto', sans-serif;
+}
+
+/**
+  *Font Variation.
+  *
   font-family: 'Lato';
+  font-family: 'Pacifico', cursive;'
+  font-family: 'Catamaran';
+  font-family: 'Roboto', sans-serif;
+*/
+
+
+%business-gradient {
+  background: linear-gradient(to right, #f64f3f 0%,#ec1e75 100%);
 }

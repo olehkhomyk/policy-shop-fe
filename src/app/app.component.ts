@@ -1,26 +1,10 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { fadeAnimation } from './other/animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fadeAnimation]
 })
-export class AppComponent {
-  private url: string = '/assets/email.php';
-  public message: any = {};
-
-  constructor(private http: HttpClient) {}
-
-  public sendEmail(): Observable<any>{
-    const obs = this.http.post(this.url, this.message);
-
-    obs.subscribe((response) => {
-      debugger;
-    });
-
-    return obs;
-  }
-
- }
+export class AppComponent { }

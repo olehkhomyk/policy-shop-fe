@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { DoOrderComponent } from './do-order/do-order.component';
 import { HttpService } from './service/http.service';
 import { OrderItemComponent } from './order-item/order-item.component';
 import { SuccessComponent } from './success/success.component';
+import { DoOrderMobileComponent } from './do-order-mobile/do-order-mobile.component';
 
 
 @NgModule({
@@ -28,10 +30,12 @@ import { SuccessComponent } from './success/success.component';
     RatingComponent,
     DoOrderComponent,
     OrderItemComponent,
-    SuccessComponent
+    SuccessComponent,
+    DoOrderMobileComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     CommonModule,

@@ -17,7 +17,7 @@ export class RatingComponent implements OnInit {
 
   constructor() { }
 
-  private static calcCandidates({candidates, sum}: Rating): Candidates {
+  private static calcAllCandidates({candidates, sum}: Rating): Candidates {
     const cloned = {...candidates};
     const props = Object.keys(cloned);
 
@@ -34,7 +34,7 @@ export class RatingComponent implements OnInit {
 
   ngOnInit() {
     if (this.rating) {
-      this.candidates = RatingComponent.calcCandidates(this.rating);
+      this.candidates = RatingComponent.calcAllCandidates(this.rating);
     }
   }
 }

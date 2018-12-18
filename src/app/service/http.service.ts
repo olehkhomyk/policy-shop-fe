@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { API_URL } from '../other/constant';
 import { map, tap } from 'rxjs/operators';
-import { Rating } from '../other/models';
+import { Candidate, Rating } from '../other/models';
 import { Order } from '../do-order/do-order.component';
 
 @Injectable({
@@ -12,6 +12,8 @@ import { Order } from '../do-order/do-order.component';
 export class HttpService {
   private url = API_URL;
 
+  private orderedCandidates = new BehaviorSubject(null);
+
   constructor(private http: HttpClient) { }
 
   public login(credential): Observable<any> {
@@ -19,6 +21,18 @@ export class HttpService {
       .pipe(tap(({token}) => {
         this.authToken = token;
       }));
+  }
+
+  public get candidatesValue(): Array<Candidate> {
+    return this.orderedCandidates.value;
+  }
+
+  public orderedCandidates$(): Observable<Array<Candidate>> {
+    return this.orderedCandidates.asObservable();
+  }
+
+  public updateCandidates(value: Array<Candidate>): void {
+    this.orderedCandidates.next(value);
   }
 
   public get isAdmin(): boolean {

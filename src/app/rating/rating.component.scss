@@ -1,4 +1,7 @@
+@import "../style/mixins";
+
 .container {
+  text-align: left;
   padding: 30px 15px;
 
   .rating-size {
@@ -36,13 +39,15 @@
 
   .rating-indicator {
     height: 20px;
-    background-color: indianred;
+    @extend %business-gradient;
     position: relative;
     width: 50%;
 
     .rating-image {
       position: absolute;
-      background-color: #bf3a3a;
+      background-color: #ec1e75;
+      background-size: cover;
+      background-position-x: 20px;
       border-radius: 50%;
       right: -5px;
       top: -10px;

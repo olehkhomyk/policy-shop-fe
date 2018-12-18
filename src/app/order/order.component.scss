@@ -1,5 +1,15 @@
 .order-container {
-  padding: 20px;
+  height: 100%;
+
+  .order-wrapper {
+    min-height: 100%;
+    padding: 70px 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    background: linear-gradient(to right, #f64f3f 0%,#ec1e75 100%);
+  }
 
   .order-list {
     display: flex;

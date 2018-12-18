@@ -18,18 +18,18 @@
   <form class="order-form" [formGroup]="orderForm" (ngSubmit)="saveOrder(orderForm)">
 
     <!--<table class="example-full-width" cellspacing="0">-->
-      <!--<tr>-->
-        <!--<td>-->
-          <!--<mat-form-field class="example-full-width">-->
-            <!--<input matInput type="text" placeholder="Ім'я"  formControlName="name" required>-->
-          <!--</mat-form-field>-->
-        <!--</td>-->
-        <!--<td>-->
-          <!--<mat-form-field class="example-full-width">-->
-            <!--<input matInput type="text" placeholder="Прізвище"  formControlName="surname" required>-->
-          <!--</mat-form-field>-->
-        <!--</td>-->
-      <!--</tr>-->
+    <!--<tr>-->
+    <!--<td>-->
+    <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput type="text" placeholder="Ім'я"  formControlName="name" required>-->
+    <!--</mat-form-field>-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput type="text" placeholder="Прізвище"  formControlName="surname" required>-->
+    <!--</mat-form-field>-->
+    <!--</td>-->
+    <!--</tr>-->
     <!--</table>-->
 
     <div class="table-container">
@@ -71,8 +71,8 @@
              [matAutocomplete]="auto"
              required/>
       <mat-autocomplete
-              #auto="matAutocomplete"
-              [displayWith]="displayFn">
+          #auto="matAutocomplete"
+          [displayWith]="displayFn">
         <mat-option *ngFor="let option of addressOptions$ | async" [value]="option">
           {{option.name}}
         </mat-option>
