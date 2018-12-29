@@ -3,17 +3,6 @@
 @import "app/style/one-page-wonder";
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-@media screen and (max-width: $mobile-screen){
-  .cdk-overlay-pane {
-    max-width: 100% !important;
-    height: 100%;
-  }
-}
-
-body, html {
-  height: 100%;
-}
-
 .btn {
   border-color: white;
 }

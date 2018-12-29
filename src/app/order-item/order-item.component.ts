@@ -12,7 +12,7 @@ export class OrderItemComponent extends BusinessStyle {
   count = 0;
 
   @Input()
-  imageUrl: string;
+  image: string;
 
   @Output()
   add: EventEmitter<void> = new EventEmitter();

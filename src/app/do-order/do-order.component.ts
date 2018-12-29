@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs';
 import { flatMap, map, debounceTime, startWith, tap } from 'rxjs/operators';
 import { City, HttpService } from '../service/http.service';
-import { COUNT_TO_DISCOUNT, PRICE, PRICE_VS_DISCOUNT, SEARCH_DROPDOWN_DELAY } from '../other/constant';
+import { COUNT_TO_REQUIERD_PAY, PRICE, SEARCH_DROPDOWN_DELAY } from '../other/constant';
 import { Candidate } from '../other/models';
 import { BusinessStyle } from '../other/BusinessStyle';
 import { Router } from '@angular/router';
@@ -35,14 +35,8 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
     return (count * PRICE);
   }
 
-  public get isDiscount(): boolean {
-    return DoOrderComponent.reduceOrder(this.candidates)  > COUNT_TO_DISCOUNT;
-  }
-
-  public get discountPrice(): number {
-    const count = DoOrderComponent.reduceOrder(this.candidates);
-
-    return count * PRICE_VS_DISCOUNT;
+  public get isPaymentRequired(): boolean {
+    return DoOrderComponent.reduceOrder(this.candidates)  > COUNT_TO_REQUIERD_PAY;
   }
 
   protected static reduceOrder(candidates: Array<Candidate>): number {
@@ -120,7 +114,7 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
       });
   }
 
-  public onNoClick(): void {
+  public close(): void {
     this.dialogRef.close();
   }
 }

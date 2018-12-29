@@ -11,6 +11,7 @@
              <app-order-item
                  class="order-item"
                  *ngFor="let candidate of candidates"
+                 [image]  = "candidate.image"
                  [count]  = "candidate.count"
                  (add)    = "addCount(candidate)"
                  (remove) = "removeCount(candidate)"></app-order-item>

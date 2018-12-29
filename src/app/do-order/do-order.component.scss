@@ -1,6 +1,13 @@
 @import "../style/variables";
 
 .container {
+  position: relative;
+  .close-dialog {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+
   .full-price-container {
     padding: 10px 0 30px;
     font-size: 20px;

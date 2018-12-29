@@ -1,36 +1,21 @@
 <div class="container">
-  <div class="full-price-container">
-    <h4 *ngIf="isDiscount">Ви замовили більше ніж 10 упаковок!!! Тому вам гарантована знижка -20%</h4>
+  <div class="close-dialog">
+    <mat-icon aria-label="Example icon-button with a heart icon" (click)="close()">close</mat-icon>
+  </div>
 
-    <div class="full-price" *ngIf="!isDiscount">
+  <div class="full-price-container" mat-dialog-title>
+    <h4 *ngIf="isPaymentRequired">Ви замовили більше 5 упаковок, в такому випадку передплата є обов'язковою!</h4>
+
+    <div class="full-price">
       <span class="price-title">Сума до оплати: &nbsp; &nbsp;</span>
       <span class="price-desc">{{fullPrice}} ГРН</span>
     </div>
-
-    <div class="price-with-discount" *ngIf="isDiscount">
-      <span class="price-title">Сума до оплати: &nbsp; &nbsp;</span>
-      <span class="price-desc full-price-desc"> {{fullPrice}} ГРН </span>
-
-      <span class="price-desc"> &nbsp; &nbsp; {{discountPrice}} (-20%)</span>
-    </div>
   </div>
 
-  <form class="order-form" [formGroup]="orderForm" (ngSubmit)="saveOrder(orderForm)">
-
-    <!--<table class="example-full-width" cellspacing="0">-->
-      <!--<tr>-->
-        <!--<td>-->
-          <!--<mat-form-field class="example-full-width">-->
-            <!--<input matInput type="text" placeholder="Ім'я"  formControlName="name" required>-->
-          <!--</mat-form-field>-->
-        <!--</td>-->
-        <!--<td>-->
-          <!--<mat-form-field class="example-full-width">-->
-            <!--<input matInput type="text" placeholder="Прізвище"  formControlName="surname" required>-->
-          <!--</mat-form-field>-->
-        <!--</td>-->
-      <!--</tr>-->
-    <!--</table>-->
+  <form class="order-form"
+        mat-dialog-content
+        [formGroup]="orderForm"
+        (ngSubmit)="saveOrder(orderForm)">
 
     <div class="table-container">
       <mat-form-field class="example-full-width">
@@ -55,8 +40,11 @@
              formControlName="city"
              [matAutocomplete]="auto"
              required/>
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let option of cityOptions$ | async" [value]="option">
+      <mat-autocomplete
+          #auto="matAutocomplete"
+          [displayWith]="displayFn">
+        <mat-option *ngFor="let option of cityOptions$ | async"
+                    [value]="option">
           {{option.name}}
         </mat-option>
       </mat-autocomplete>
@@ -82,7 +70,7 @@
     <button mat-flat-button
             [color]="businessColor"
             type="submit"
-            [disabled]="!orderForm.dirty">Save
+            [disabled]="!orderForm.dirty">Замовити
     </button>
   </form>
 </div>

@@ -1,37 +1,26 @@
-<div class="container">
-  <div class="full-price-container">
-    <h4 *ngIf="isDiscount">Ви замовили більше ніж 10 упаковок!!! Тому вам гарантована знижка -20%</h4>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home">Пoлітична Гречка</a>
+  </div>
+</nav>
 
-    <div class="full-price" *ngIf="!isDiscount">
+<div class="order-container">
+
+  <div class="cancel-order">
+    <mat-icon aria-label="Example icon-button with a heart icon" (click)="cancel()">close</mat-icon>
+  </div>
+
+  <div class="full-price-container">
+    <h4 *ngIf="isPaymentRequired">Ви замовили більше 5 упаковок, в такому випадку передплата є обов'язковою!</h4>
+
+    <div class="full-price">
       <span class="price-title">Сума до оплати: &nbsp; &nbsp;</span>
       <span class="price-desc">{{fullPrice}} ГРН</span>
-    </div>
-
-    <div class="price-with-discount" *ngIf="isDiscount">
-      <span class="price-title">Сума до оплати: &nbsp; &nbsp;</span>
-      <span class="price-desc full-price-desc"> {{fullPrice}} ГРН </span>
-
-      <span class="price-desc"> &nbsp; &nbsp; {{discountPrice}} (-20%)</span>
     </div>
   </div>
 
   <form class="order-form" [formGroup]="orderForm" (ngSubmit)="saveOrder(orderForm)">
-
-    <!--<table class="example-full-width" cellspacing="0">-->
-    <!--<tr>-->
-    <!--<td>-->
-    <!--<mat-form-field class="example-full-width">-->
-    <!--<input matInput type="text" placeholder="Ім'я"  formControlName="name" required>-->
-    <!--</mat-form-field>-->
-    <!--</td>-->
-    <!--<td>-->
-    <!--<mat-form-field class="example-full-width">-->
-    <!--<input matInput type="text" placeholder="Прізвище"  formControlName="surname" required>-->
-    <!--</mat-form-field>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</table>-->
-
     <div class="table-container">
       <mat-form-field class="example-full-width">
         <input matInput type="text" placeholder="Ім'я"  formControlName="name" required>
@@ -53,9 +42,11 @@
              aria-label="Assignee"
              matInput
              formControlName="city"
+             #cityAutocomplete
              [matAutocomplete]="auto"
              required/>
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-autocomplete #auto="matAutocomplete"
+                        [displayWith]="displayFn">
         <mat-option *ngFor="let option of cityOptions$ | async" [value]="option">
           {{option.name}}
         </mat-option>
@@ -68,6 +59,7 @@
              aria-label="NovaPoshta"
              matInput
              formControlName="address"
+             #addressAutocomplete
              [matAutocomplete]="auto"
              required/>
       <mat-autocomplete

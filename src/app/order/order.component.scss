@@ -1,6 +1,10 @@
 .order-container {
   height: 100%;
 
+  @media screen and (min-width: 1080px) {
+    height: 100vh;
+  }
+
   .order-wrapper {
     min-height: 100%;
     padding: 70px 0 40px;
@@ -8,7 +12,8 @@
     flex-direction: column;
     justify-content: space-around;
     flex-wrap: nowrap;
-    background: linear-gradient(to right, #f64f3f 0%,#ec1e75 100%);
+    //background: linear-gradient(to right, #f64f3f 0%,#ec1e75 100%);
+    background-color: #28be9b;
   }
 
   .order-list {

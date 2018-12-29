@@ -1,6 +1,17 @@
 @import "../style/variables";
 
-.container {
+.order-container {
+  position: relative;
+  margin-top: 100px;
+  padding: 0 10px;
+
+  .cancel-order {
+    position: absolute;
+    right: 20px;
+    top: -20px;
+    cursor: pointer;
+  }
+
   .full-price-container {
     padding: 10px 0 30px;
     font-size: 20px;
