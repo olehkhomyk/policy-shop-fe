@@ -22,6 +22,11 @@ export enum BusinessColor {
   Default = ''
 }
 
+export enum LiquPayResult {
+  Success = '1',
+  Failed = '2'
+}
+
 export const BUSINESS_COLOR = BusinessColor.Primary;
 
 export function generateCandidates() {

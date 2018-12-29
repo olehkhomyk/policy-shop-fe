@@ -19,6 +19,7 @@ import { HttpService } from './service/http.service';
 import { OrderItemComponent } from './order-item/order-item.component';
 import { SuccessComponent } from './success/success.component';
 import { DoOrderMobileComponent } from './do-order-mobile/do-order-mobile.component';
+import { HandleLiqpayComponent } from './handle-liqpay/handle-liqpay.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { DoOrderMobileComponent } from './do-order-mobile/do-order-mobile.compon
     DoOrderComponent,
     OrderItemComponent,
     SuccessComponent,
-    DoOrderMobileComponent
+    DoOrderMobileComponent,
+    HandleLiqpayComponent
   ],
   imports: [
     BrowserModule,
