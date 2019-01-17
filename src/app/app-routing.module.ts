@@ -12,7 +12,7 @@ import { handleLiqpayState } from './handle-liqpay/handle-liqpay.state';
 const routes: Routes = [
   defaultState,
   landingState,
-  orderState,
+  // orderState,
   changeRating,
   successState,
   doOrderState,

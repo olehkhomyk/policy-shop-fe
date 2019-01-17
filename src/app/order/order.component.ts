@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DoOrderComponent } from '../do-order/do-order.component';
 import { Candidate } from '../other/models';
@@ -15,7 +15,7 @@ import { doOrderState } from '../do-order-mobile/do-order-mobile.state';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent extends BusinessStyle {
+export class OrderComponent extends BusinessStyle implements OnInit {
 
   public candidates: Array<Candidate> = generateCandidates();
 
@@ -23,13 +23,19 @@ export class OrderComponent extends BusinessStyle {
     super();
   }
 
+  ngOnInit(): void {
+    this.checkOrders();
+  }
+
   public addCount(candidate: Candidate): void {
-      candidate.count++;
+    candidate.count++;
+    this.updateOrderStore();
   }
 
   public removeCount(candidate: Candidate): void {
     if (candidate.count > 0) {
       candidate.count--;
+      this.updateOrderStore();
     }
   }
 
@@ -44,6 +50,16 @@ export class OrderComponent extends BusinessStyle {
     } else {
       this.openDialog();
     }
+  }
+
+  private checkOrders(): void {
+    if (localStorage.order) {
+      this.candidates = JSON.parse(localStorage.order);
+    }
+  }
+
+  private updateOrderStore(): void {
+    localStorage.order = JSON.stringify(this.candidates);
   }
 
   private redirectToOrderForm(): void {

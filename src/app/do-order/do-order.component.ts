@@ -25,6 +25,7 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
               protected service: HttpService,
               protected router: Router,
               public dialogRef?: MatDialogRef<DoOrderComponent>,
+              // @ts-ignore
               @Inject(MAT_DIALOG_DATA) public data?: any) {
     super();
   }
@@ -54,7 +55,7 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
   }
 
   protected get candidates(): Array<Candidate> {
-    return  this.data && this.data.candidates || this.service.candidatesValue || [];
+    return  this.data && this.data.candidates || this.service.candidatesValue || JSON.parse(localStorage.order) || [];
   }
 
   ngOnInit() {
@@ -114,8 +115,35 @@ export class DoOrderComponent extends BusinessStyle implements OnInit {
       });
   }
 
+  // public get checkoutUrl(): string {
+  //   //   return `https://www.liqpay.ua/api/3/checkout/?signature=${this.getSignatureLiqPay()}&data=${this.getDataLiqpay()}`;
+  //   // }
+  //   //
+  //   // private getSignatureLiqPay(): any {
+  //   //   const preData = JSON.stringify(new LiqpayOrder()).toString();
+  //   //   const privateKey = `wOAHqYaJVoQeCqy1CjSiz9v0AC4RqSDU9rBA03cS`;
+  //   //
+  //   //   return btoa(sha1(`${privateKey}${preData}${privateKey}`));
+  //   // }
+  //   //
+  //   // private getDataLiqpay(): any {
+  //   //   return  btoa(sha1(JSON.stringify(new LiqpayOrder()).toString());
+  //   // }
+
   public close(): void {
     this.dialogRef.close();
+  }
+}
+
+class LiqpayOrder {
+  action = 'pay';
+  currency: 'UAH';
+  amount: '50';
+  description: string;
+  version: '3';
+
+  constructor(data?: LiqpayOrder) {
+    Object.assign(this, data);
   }
 }
 

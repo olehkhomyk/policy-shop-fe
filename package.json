@@ -26,6 +26,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
+    "js-sha1": "^0.6.0",
     "ng-auto-complete": "^4.1.4",
     "request": "^2.88.0",
     "rxjs": "~6.3.3",
