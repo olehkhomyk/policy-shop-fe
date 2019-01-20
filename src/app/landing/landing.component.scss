@@ -15,7 +15,14 @@
     width: 25%;
     p {
       margin-top: 30px;
+      font-size: 20px;
     }
+  }
+}
+
+.order-container {
+  @media screen and (min-width: 1040px) {
+    height: 100vh;
   }
 }
 
@@ -59,6 +66,7 @@
 
 .image-block {
   background-size: contain;
+  background-repeat: no-repeat;
   border-radius: 10px;
   max-width: 450px;
   max-height: 450px;
