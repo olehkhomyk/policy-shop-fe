@@ -11,12 +11,6 @@ header.masthead {
   .masthead-content {
     z-index: 1;
     position: relative;
-    .masthead-heading {
-      font-size: 4rem;
-    }
-    .masthead-subheading {
-      font-size: 2rem;
-    }
   }
   .bg-circle {
     z-index: 0;
@@ -55,12 +49,6 @@ header.masthead {
     padding-top: calc(10rem + 55px);
     padding-bottom: 10rem;
     .masthead-content {
-      .masthead-heading {
-        font-size: 6rem;
-      }
-      .masthead-subheading {
-        font-size: 4rem;
-      }
     }
   }
 }

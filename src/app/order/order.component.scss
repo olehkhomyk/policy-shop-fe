@@ -3,13 +3,11 @@
 
   .order-wrapper {
     min-height: 100%;
-    padding: 70px 0 40px;
+    padding: 40px 0 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     flex-wrap: nowrap;
-    //background: linear-gradient(to right, #f64f3f 0%,#ec1e75 100%);
-    background-color: #28be9b;
   }
 
   .order-list {
@@ -19,6 +17,9 @@
 
     .order-item {
       margin: 10px;
+      @media screen and (max-width: 1300px){
+        margin: 10px 30px;
+      }
     }
   }
 
